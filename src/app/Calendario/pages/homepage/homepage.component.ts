@@ -81,8 +81,7 @@ export class HomepageComponent implements OnInit {
 
 
     this.calendario.addDayCalendar(p_param);
-
+//hola
   }
 
 }
-
