@@ -1,0 +1,15 @@
+<div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th *ngFor="let column of displayColumn" scope="col"> {{column | titlecase }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <tr *ngFor="let element of data">
+        <td *ngFor="let item of displayColumn">{{ element[item] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

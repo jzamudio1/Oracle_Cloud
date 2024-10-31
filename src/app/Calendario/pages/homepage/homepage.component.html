@@ -1,0 +1,52 @@
+<div class="row p-3">
+  <h1>Calendario</h1>
+
+  <div class="col-12 pt-2">
+    <data-grid [displayColumn]="displayColumn" [data]="arrayDays" id="calendar"></data-grid>
+  </div>
+
+  <!--Div Buttons-->
+  <div class="btn-group" role="group" aria-label="Basic radio toggle button group" (click)="SearchDays()">
+    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+    <label class="btn btn-outline-primary" for="btnradio1">Buscar</label>
+
+    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+    <label class="btn btn-outline-primary" for="btnradio2">Añadir</label>
+
+    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+    <label class="btn btn-outline-primary" for="btnradio3">Guardar</label>
+  </div>
+
+
+  <form [formGroup]="detailsForm" class="row row-cols-lg-auto g-3 align-items-center">
+    <div class="col-12">
+      <label class="visually-hidden" for="Fecha">Fecha</label>
+      <div class="input-group">
+        <input formControlName="Fecha" type="date" class="form-control" id="fecha"
+          placeholder="Evento">
+      </div>
+    </div>
+
+    
+
+    <div class="col-12">
+      <label class="visually-hidden" for="Evento">Evento</label>
+      <div class="input-group">
+        <input formControlName="Evento" type="text" class="form-control" id="Event" placeholder="Evento">
+      </div>
+    </div>
+
+
+    <div class="col-12">
+      <label class="visually-hidden" for="descripcion">Descripcion</label>
+      <div class="input-group">
+        <input formControlName="Descripcion" type="text" class="form-control" id="desc" placeholder="Descripcion">
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button type="submit" (click)="postDay()" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+
+</div>
