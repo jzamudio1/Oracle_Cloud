@@ -3,7 +3,7 @@ import { diasEspeciales } from '../../interfaces/diasEspeciales';
 import { CalendarioService } from '../../service/calendario.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
-import { TyrParam } from '../../../api/interface/TyrParam';
+import { TyrParam } from '../../../../api/interface/TyrParam';
 
 @Component({
   selector: 'pages-homepage',
