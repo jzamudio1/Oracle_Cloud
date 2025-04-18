@@ -8,17 +8,20 @@ import { EjecutarResponse } from './interface/EjecutarResponse';
   providedIn: 'root',
 })
 export class ApiService {
-  private apiUrl = 'https://g36517cb0388462-prmrbyvhf2lmgl3x.adb.eu-madrid-1.oraclecloudapps.com/ords/apibeginend/PostApiBbdd/Api_Connect';
+  private apiUrl =
+    'https://g36517cb0388462-prmrbyvhf2lmgl3x.adb.eu-madrid-1.oraclecloudapps.com/ords/apibeginend/PostApiBbdd/Api_Connect';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // Método para hacer una petición POST
   private postData(request: EjecutarRequest): Observable<any> {
     return this.http.post(this.apiUrl, request);
   }
 
-
-  public Ejecutar<T>(request: EjecutarRequest, entity: T): Observable<EjecutarResponse<T>> {
+  public Ejecutar<T>(
+    request: EjecutarRequest,
+    entity: T
+  ): Observable<EjecutarResponse<T>> {
     let resultados: T[] = [];
     let response = {} as EjecutarResponse<T>;
     response.Resultados = resultados;
@@ -32,8 +35,28 @@ export class ApiService {
         });
       }
       respuesta.next(response);
-    }
-    );
+    });
+    return respuesta;
+  }
+
+  // Método para hacer una petición POST
+  private postDataApi(request: EjecutarRequest): Observable<any> {
+    return this.http.post(this.apiUrl, request);
+  }
+
+  public EjecutarApi<T>(
+    request: EjecutarRequest,
+    entity: T
+  ): Observable<EjecutarResponse<T>> {
+    let resultados: T[] = [];
+    let response = {} as EjecutarResponse<T>;
+    response.Resultados = resultados;
+    let respuesta = new Subject<EjecutarResponse<T>>();
+    //Lanzamos Peticion a la API
+    this.postData(request).subscribe((resp) => {
+      response.Resultados.push(resp);
+      respuesta.next(response);
+    });
     return respuesta;
   }
 }

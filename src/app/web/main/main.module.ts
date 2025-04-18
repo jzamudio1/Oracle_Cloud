@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { SharedModule } from '../../shared/shared.module';
-import { CalendarioModule } from '../Calendario/calendario.module';
+import { SociosComponent } from '../Socios/Socios.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
-  declarations: [MainComponent],
-  imports: [SharedModule, CalendarioModule],
+  declarations: [MainComponent, SociosComponent],
+  imports: [HttpClientModule, SharedModule, MatTableModule],
   exports: [MainComponent],
 })
 export class MainModule {}
