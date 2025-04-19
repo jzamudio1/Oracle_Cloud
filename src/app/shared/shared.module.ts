@@ -24,9 +24,15 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { SmallScreenDirective } from './components/SmallScreen.directive';
 
 @NgModule({
-  declarations: [SidebarComponent, DataGridComponent, NavegacionComponent],
+  declarations: [
+    SidebarComponent,
+    DataGridComponent,
+    NavegacionComponent,
+    SmallScreenDirective,
+  ],
   imports: [
     CommonModule,
     MatIconModule,
@@ -47,8 +53,13 @@ import { MatSortModule } from '@angular/material/sort';
     MatCheckboxModule,
     MatPaginator,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
   ],
-  exports: [SidebarComponent, DataGridComponent, NavegacionComponent],
+  exports: [
+    SidebarComponent,
+    DataGridComponent,
+    NavegacionComponent,
+    SmallScreenDirective,
+  ],
 })
 export class SharedModule {}

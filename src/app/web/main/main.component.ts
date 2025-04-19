@@ -10,24 +10,12 @@ import { map, shareReplay } from 'rxjs';
   styleUrls: ['./main.component.css'],
 })
 export class MainComponent implements OnInit {
-  isHandset;
-  constructor(
-    private apiService: ApiService,
-    private breakpointObserver: BreakpointObserver
-  ) {
-    this.isHandset = this.breakpointObserver
-      .observe([Breakpoints.Handset])
-      .pipe(
-        map((result) => result.matches),
-        shareReplay()
-      );
-  }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.loadMenu();
   }
   public menu: any[] = [];
-  // isHandset = this.breakpointObserver.observe(Breakpoints.Handset);
 
   getMenu(): Promise<any[]> {
     let req: EjecutarRequest = {

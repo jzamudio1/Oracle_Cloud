@@ -1,7 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-navegacion',
@@ -9,13 +6,6 @@ import { map, shareReplay } from 'rxjs/operators';
   styleUrl: './navegacion.component.scss',
 })
 export class NavegacionComponent {
-  private breakpointObserver = inject(BreakpointObserver);
   constructor() {}
   @Input() Menu: any = [];
-  isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
-    .pipe(
-      map((result) => result.matches),
-      shareReplay()
-    );
 }
