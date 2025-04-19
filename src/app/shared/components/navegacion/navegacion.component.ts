@@ -6,7 +6,7 @@ import { map, shareReplay } from 'rxjs/operators';
 @Component({
   selector: 'app-navegacion',
   templateUrl: './navegacion.component.html',
-  styleUrl: './navegacion.component.css',
+  styleUrl: './navegacion.component.scss',
 })
 export class NavegacionComponent {
   private breakpointObserver = inject(BreakpointObserver);

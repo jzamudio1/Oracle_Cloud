@@ -1,32 +1,65 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-  @for (column of this.columnsConfig; track column) {
-  <ng-container [matColumnDef]="column.columnDef">
-    <th mat-header-cell *matHeaderCellDef>
-      {{ column.header }}
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <!-- Text / Number -->
-      <mat-form-field *ngIf="column.type === 'text' || column.type === 'number'">
-        <input matInput [type]="column.type" [(ngModel)]="row[column.param]" (ngModelChange)="row[column.param] = $event"/>
-      </mat-form-field>
-      <!-- Select -->
-      <mat-form-field *ngIf="column.type === 'select'">
-        <mat-select [(ngModel)]="row[column.param]" (selectionChange)="rowChanged.emit(row)">
-          <mat-option *ngFor="let opt of column.options" [value]="opt">{{ opt }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <!-- Date -->
-      <mat-form-field  *ngIf="column.type === 'date'">
-        <input matInput [matDatepicker]="picker"
-               [(ngModel)]="row[column.param]"
-               (dateChange)="rowChanged.emit(row)">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </td>
-  </ng-container>
-  }
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="tableData" matSort>
+    <!-- Checkbox Column -->
+    <ng-container *ngFor="let column of columnsConfig" [matColumnDef]="column.columnDef">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.header }}</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-radio-button
+          *ngIf="column.type === 'radioButton'"
+          (click)="onSelectRow(row)"
+          [checked]="row === selectedRow"
+          [aria-label]="checkboxLabel(row)"
+        >
+        </mat-radio-button>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+        <ng-container *ngIf="row === selectedRow; else readOnly">
+          <!-- Text / Number -->
+          <mat-form-field *ngIf="column.type === 'text' || column.type === 'number'">
+            <input
+              matInput
+              [type]="column.type"
+              [(ngModel)]="row[column.param]"
+              (ngModelChange)="row[column.param] = $event"
+            />
+          </mat-form-field>
+          <!-- Select -->
+          <mat-form-field *ngIf="column.type === 'select'">
+            <mat-select
+              [(ngModel)]="row[column.param]"
+              (selectionChange)="rowChanged.emit(row)"
+            >
+              <mat-option *ngFor="let opt of column.options" [value]="opt">{{
+                opt
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- Date -->
+          <mat-form-field *ngIf="column.type === 'date'">
+            <input
+              matInput
+              [matDatepicker]="picker"
+              [(ngModel)]="row[column.param]"
+              (dateChange)="rowChanged.emit(row)"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </ng-container>
+        <!-- Si NO está seleccionada, mostramos sólo el valor -->
+        <ng-template #readOnly>
+          {{ row[column.param] }}
+        </ng-template>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page of users"
+  ></mat-paginator>
+</div>

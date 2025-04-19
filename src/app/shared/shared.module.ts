@@ -20,6 +20,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core'; // Para usar fechas nativas
 import { MatButtonModule } from '@angular/material/button';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [SidebarComponent, DataGridComponent, NavegacionComponent],
@@ -39,6 +43,11 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatPaginator,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [SidebarComponent, DataGridComponent, NavegacionComponent],
 })

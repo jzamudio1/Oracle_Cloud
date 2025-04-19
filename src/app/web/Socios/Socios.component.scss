@@ -1,0 +1,20 @@
+.custom-margin {
+  margin: 20px; /* Puedes usar margin-top, margin-bottom, etc. */
+}
+
+.button-buscar {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: flex-end; /* Alinea a la izquierda */
+}
+
+.divider {
+  margin-bottom: 16px;
+}
+
+.button-utility {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end; /* Alinea a la izquierda */
+  gap: 12px; /* <-- Espacio horizontal entre los botones */
+}

@@ -1,5 +1,24 @@
-  <data-grid
-    [columnsConfig]="displayColumn"
-    [dataSource]="ELEMENT_DATA"
-    id="calendar"
-  ></data-grid>
+<div class="custom-margin">
+  <section>
+    <div class="button-buscar">
+      <button mat-flat-button color="warn" (click)="search()">Buscar</button>
+    </div>
+  </section>
+  <mat-divider class="divider"></mat-divider>
+  <section>
+    <data-grid
+      [columnsConfig]="displayColumn"
+      [dataSource]="ELEMENT_DATA"
+      [selectedRow]="selectrow"
+      (tableDataExported)="reciboTableData($event)"
+      id="Socios"
+    ></data-grid>
+  </section>
+  <section>
+    <div class="button-utility">
+      <button mat-flat-button color="primary" (click)="addRow()">Añadir</button>
+      <button mat-flat-button color="accent">Borrar</button>
+      <button mat-flat-button color="warn">Guardar</button>
+    </div>
+  </section>
+</div>
